@@ -1,8 +1,8 @@
 "use strict";
 
-const totalTasks = 12;
-const completedTasks = 5;
-const dailyLimit = 3;
+const totalTasks = 14;
+const completedTasks = 3;
+const dailyLimit = 5;
 
 let remainingTasks = totalTasks - completedTasks;
 
@@ -32,14 +32,20 @@ if (typeof totalTasks !== "number" || typeof completedTasks !== "number") {
   console.log("0 дней; цикл не выполняется.");
 } else {
   console.log("Осталось задач:", remainingTasks);
-  let day = 0;
+  let dayJobs  = 0;
+  let dayCalen = 0;
 
   while (remainingTasks > 0){
-    day+=1;
-    console.log("День " + day + ": выполнено " + Math.min(dailyLimit, remainingTasks) + ", осталось " + (remainingTasks - Math.min(dailyLimit, remainingTasks)));
-    remainingTasks -= Math.min(dailyLimit, remainingTasks);
+    dayCalen+=1;
+    if (( 0 < (dayCalen % 7)) &&  ((dayCalen % 7) < 6)) {
+        dayJobs += 1; 
+        console.log("День " + dayCalen + ": выполнено " + Math.min(dailyLimit, remainingTasks) + ", осталось " + (remainingTasks - Math.min(dailyLimit, remainingTasks)));
+        remainingTasks -= Math.min(dailyLimit, remainingTasks);
+    } else {
+        console.log("День " + dayCalen + ": выходной")
+    }
   }
 
-  console.log("Потребуется дней: " + day);
+  console.log("Потребуется " + dayJobs + " рабочих и " + dayCalen + " календарных дней");
 
 }
